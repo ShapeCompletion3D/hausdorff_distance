@@ -29,4 +29,7 @@ setup(name='hausdorff_distance',
           'Topic :: Scientific/Engineering'
       ],
       py_modules=['hausdorff_distance'],
-keywords=['hausdorff', 'numpy'])
+      packages=['hausdorff_distance'],
+      package_dir={'hausdorff_distance': '.'},
+      data_files={'distance.mlx': ['distance.mlx']},
+      keywords=['hausdorff', 'numpy'])

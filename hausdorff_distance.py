@@ -4,12 +4,18 @@ import math
 import os
 import re
 
+import hausdorff_distance
+
 from collections import namedtuple
 
 HausdorffDistance = namedtuple('HausdorffDistance', ['fileA', 'fileB', 'nptsA', 'dmin', 'dmax', 'dmean', 'dRMS'], verbose=False)
 
 def hausdorff_distance_one_direction(mesh1_filepath, mesh2_filepath):
-    mlx_path = os.path.abspath(__file__).replace(__file__, "distance.mlx")
+
+    pkg_path = os.path.abspath(hausdorff_distance.__file__)
+    mlx_path = "/".join(pkg_path.split("/")[:-1])
+    mlx_path += "/distance.mlx"
+
     f = open(os.devnull, 'w')
     cmd_str = "meshlabserver -s " + mlx_path + " -i " + mesh1_filepath + " " + mesh2_filepath
     output = subprocess.check_output(cmd_str.split(" "), stderr=f)
@@ -38,7 +44,7 @@ def hausdorff_distance_one_direction(mesh1_filepath, mesh2_filepath):
                              dmean=mean_distance,
                              dRMS=RMS_distance)
 
-def hausdorff_distance(mesh1_filepath, mesh2_filepath):
+def hausdorff_distance_bi(mesh1_filepath, mesh2_filepath):
     # get hausdorff dist from meshlab server                                                                                                                                                                
     hd_ab = hausdorff_distance_one_direction(mesh1_filepath, mesh2_filepath)
     hd_ba = hausdorff_distance_one_direction(mesh2_filepath, mesh1_filepath)
@@ -73,7 +79,7 @@ if __name__ == "__main__":
     if len(mesh_files) != 2:
         print "wrong number of mesh files: wanted 2, got: " + str(len(mesh_files))
 
-    dist = hausdorff_distance(mesh_files[0], mesh_files[1])
+    dist = hausdorff_distance_bi(mesh_files[0], mesh_files[1])
     
     print dist
 
