@@ -7,14 +7,13 @@ if mydir:
     os.chdir(mydir)
 
 version = '0.4'
-base_url = 'https://github.com/jvarley/jaccard_similarity'
-
-setup(name='jaccard_similarity',
+base_url = 'https://github.com/ShapeCompletion3D/hausdorff_distance'
+setup(name='hausdorff_distance',
       author='Jake Varley',
       author_email='jakevarley@gmail.com',
       version=version,
-      install_requires=['numpy>=1.8', 'plyfile', 'binvox_rw'],
-      description='Compute Jaccard Similarity between two meshes',
+      install_requires=['numpy>=1.8'],
+      description='Compute Hausdorff Distance between two meshes',
       long_description='(see project homepage)',
       url=base_url,
       download_url=('%s/archive/v%s.tar.gz' % (base_url, version)),
@@ -29,5 +28,5 @@ setup(name='jaccard_similarity',
           'Development Status :: 4 - Beta',
           'Topic :: Scientific/Engineering'
       ],
-      py_modules=['jaccard_similarity'],
-keywords=['jaccard', 'numpy'])
+      py_modules=['hausdorff_distance'],
+keywords=['hausdorff', 'numpy'])
