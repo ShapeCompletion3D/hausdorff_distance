@@ -77,11 +77,11 @@ if __name__ == "__main__":
     mesh_files = args.mesh_filepaths
     
     if len(mesh_files) != 2:
-        print "wrong number of mesh files: wanted 2, got: " + str(len(mesh_files))
+        print("wrong number of mesh files: wanted 2, got: " + str(len(mesh_files)))
 
     dist = hausdorff_distance_bi(mesh_files[0], mesh_files[1])
     
-    print dist
+    print(dist)
 
     
 
